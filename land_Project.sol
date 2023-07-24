@@ -6,7 +6,7 @@ contract Land_Registran {
     address private landDepartment;
 
     // State variable of type uint for Lands count
-    uint public landsCount;
+    uint public generateLandsId;
 
     // Constructor to make deployer of the contract Land Inspector
     constructor() {
@@ -166,11 +166,11 @@ contract Land_Registran {
         require(ownerMapping[msg.sender] == 0, "Land is already registered on this Address");
         require(BuyerMapping[msg.sender].isVerified != true, "This person is registered as a Buyer");
         require(SellerMapping[msg.sender].isVerified == true, "Frist verified the Seller  ");
-        landsCount++;
-        Lands[landsCount] = landStruct(landsCount, _area, _city, _state, _price, false);
-        landOwnerMapping[landsCount] = msg.sender;
-        ownerMapping[msg.sender] = landsCount;
-        emit landRegister("Land data successfully saved", landsCount, msg.sender);
+        generateLandsId++;
+        Lands[generateLandsId] = landStruct(generateLandsId, _area, _city, _state, _price, false);
+        landOwnerMapping[generateLandsId] = msg.sender;
+        ownerMapping[msg.sender] = generateLandsId;
+        emit landRegister("Land data successfully saved", generateLandsId, msg.sender);
     }
 
     // Function to set verification status of Land
